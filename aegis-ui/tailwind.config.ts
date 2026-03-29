@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,22 +10,74 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        aegis: {
-          bg: "#050B14",
-          panel: "rgba(10, 15, 25, 0.75)",
-          border: "rgba(0, 255, 204, 0.2)",
-          cyan: "#00FFCC",
-          magenta: "#FF00FF",
-          green: "#39FF14",
-          red: "#FF3333",
-          yellow: "#FFFF33"
-        }
+        "on-secondary-fixed": "#0d1c32",
+        "inverse-on-surface": "#2e3037",
+        "on-tertiary": "#053900",
+        "primary-fixed": "#9cf0ff",
+        "surface-container-high": "#272a31",
+        "tertiary-container": "#011500",
+        "inverse-surface": "#e1e2eb",
+        "on-primary-fixed-variant": "#004f58",
+        "on-error": "#690005",
+        "on-tertiary-container": "#189100",
+        "on-secondary": "#233148",
+        "tertiary-fixed": "#79ff5b",
+        "inverse-primary": "#006875",
+        "primary-fixed-dim": "#00daf3",
+        "on-primary-container": "#00899a",
+        "on-secondary-container": "#abb9d6",
+        "primary": "#00daf3",
+        "on-primary-fixed": "#001f24",
+        "surface": "#10131a",
+        "secondary": "#b9c7e4",
+        "surface-bright": "#363940",
+        "surface-tint": "#00daf3",
+        "secondary-fixed": "#d6e3ff",
+        "on-surface": "#e1e2eb",
+        "surface-dim": "#10131a",
+        "on-background": "#e1e2eb",
+        "secondary-container": "#3c4962",
+        "on-secondary-fixed-variant": "#39475f",
+        "surface-container-highest": "#32353c",
+        "surface-container-lowest": "#0b0e14",
+        "on-primary": "#00363d",
+        "surface-container": "#1d2026",
+        "on-error-container": "#ffdad6",
+        "background": "#10131a",
+        "error": "#ffb4ab",
+        "outline": "#8f9095",
+        "on-tertiary-fixed-variant": "#095300",
+        "secondary-fixed-dim": "#b9c7e4",
+        "outline-variant": "#45474b",
+        "tertiary": "#2ae500",
+        "tertiary-fixed-dim": "#2ae500",
+        "on-tertiary-fixed": "#022100",
+        "surface-variant": "#32353c",
+        "primary-container": "#001417",
+        "on-surface-variant": "#c6c6cb",
+        "error-container": "#93000a",
+        "surface-container-low": "#191c22",
+      },
+      fontFamily: {
+        "headline": ["Space Grotesk", "sans-serif"],
+        "body": ["Inter", "sans-serif"],
+        "label": ["Inter", "sans-serif"],
+        "mono": ["JetBrains Mono", "monospace"],
+      },
+      borderRadius: {
+        "DEFAULT": "0.125rem",
+        "lg": "0.25rem",
+        "xl": "0.5rem",
+        "full": "0.75rem",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/container-queries"),
+  ],
 };
 export default config;

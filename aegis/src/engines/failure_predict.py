@@ -81,11 +81,12 @@ class FailurePredictor:
         try:
             metrics = db.query(SystemMetric).order_by(SystemMetric.recorded_at.desc()).limit(50).all()
             if not metrics:
-                return {"system_health": "UNKNOWN", "active_anomalies": 0, "avg_cpu": 0, "avg_latency": 0}
+                return {"system_health": "UNKNOWN", "active_anomalies": 0, "avg_cpu": 0, "avg_latency": 0, "throughput": 0}
             
             recent_anomalies = sum(1 for m in metrics[:10] if m.is_anomaly)
             avg_cpu = sum(m.cpu_usage for m in metrics[:10]) / min(len(metrics), 10)
             avg_lat = sum(m.latency_ms for m in metrics[:10]) / min(len(metrics), 10)
+            avg_thr = sum(m.throughput for m in metrics[:10]) / min(len(metrics), 10)
             
             health = "HEALTHY"
             if recent_anomalies > 5 or avg_cpu > 90:
@@ -97,7 +98,8 @@ class FailurePredictor:
                 "system_health": health,
                 "active_anomalies": recent_anomalies,
                 "avg_cpu": round(avg_cpu, 2),
-                "avg_latency": round(avg_lat, 2)
+                "avg_latency": round(avg_lat, 2),
+                "throughput": round(avg_thr, 2)
             }
         finally:
             db.close()
